@@ -1,0 +1,120 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	background-color: #232b2b;
+	margin: 0;
+	--block-width: 25px;
+	font-family: system-ui;
+	color: gray;
+	font-size: 12px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+p {
+	max-width: calc(var(--block-width) * 7.5);
+	user-select: none;
+}
+
+#game_box {
+	position: relative;
+	width: calc(var(--block-width) * 4);
+	aspect-ratio: 1/1;
+	outline: 2px solid black;
+}
+
+.winner {
+	animation: winner 1s linear forwards;
+}
+@keyframes winner {
+	100% {
+		transform: rotate(1080deg);
+	}
+}
+
+.generic_block {
+	/* 	background-color: red; */
+	width: var(--block-width);
+	height: var(--block-width);
+	float: left;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+.generic_block:hover {
+	background: gray;
+}
+
+span {
+	width: var(--block-width);
+	height: var(--block-width);
+	border: 2px inset rgba(0, 0, 0, 0.75);
+	display: block;
+	pointer-events: all;
+	cursor: pointer;
+}
+
+.square span {
+	background-color: yellow;
+}
+
+.rectangle span {
+	background-color: turquoise;
+}
+
+.lshape span {
+	background-color: darkorange;
+}
+
+.lshape_two span {
+	background-color: violet;
+}
+
+.rectangle {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.lshape,
+.lshape_two {
+	display: grid;
+	/* 	transform: rotate(0.75turn); */
+	grid-template-columns: repeat(3, 25px);
+	grid-template-rows: repeat(2, 25px);
+	gap: 0;
+	position: absolute;
+	left: calc(var(--block-width) * 1);
+	top: 0;
+}
+
+.lshape_two {
+	left: calc(var(--block-width) * 1);
+	top: calc(var(--block-width) * 2);
+	transform: scaleY(-1);
+}
+
+.square {
+	display: grid;
+	grid-template-columns: repeat(2, 25px);
+	grid-template-rows: repeat(2, 25px);
+	gap: 0;
+	position: absolute;
+	left: calc(var(--block-width) * 2);
+	top: calc(var(--block-width) * 1);
+}
+
+.piece {
+	pointer-events: none;
+	z-index: 1;
+}
+
+.selected {
+	z-index: 9999;
+	pointer-events: all;
+	filter: drop-shadow(0px 0px 2px white);
+}
